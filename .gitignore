@@ -1,0 +1,14 @@
+.vs/
+out/
+build/
+
+# Generated board preview
+board.html
+
+# Local LAN multiplayer planning note
+docs/evosphere_terminal_lan_multiplayer_issue.md
+
+# Visual Studio Code workspace settings are kept because they contain
+# project-specific CMake configuration.
+!.vscode/
+!.vscode/settings.json
