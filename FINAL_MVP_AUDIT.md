@@ -64,9 +64,6 @@ selection, the main menu, and the normal Quit Game path without a crash.
   management, and complete console-game flows still need dedicated tests.
 - The game is a local terminal prototype only: there is no GUI, networking,
   save/load system, audio, or packaged release workflow.
-- `external/raylib` remains in the repository even though the terminal MVP
-  does not currently use it. It is third-party source code, not an active
-  gameplay dependency.
 - There is no root project license. Add one before presenting the repository
   as reusable open-source software.
 
@@ -81,13 +78,13 @@ terms only.
 
 - The repository `assets/` folder was removed at the maintainer's request, so
   this terminal archive no longer publishes those project artwork/font files.
-- Raylib remains under `external/raylib` with its own `LICENSE` file. Review
-  that license if Raylib is reintroduced into a future graphical version.
+- The unused bundled Raylib source was removed with the archive cleanup.
 - A root `LICENSE` for EvoSphere itself is still recommended.
 
 ## Repository Cleanup Performed
 
 - Removed the tracked `assets/` directory.
+- Removed the unused `external/raylib` source tree.
 - Removed the tracked `debug.log` file.
 - Removed `.vscode` settings and C/C++ configuration from version control.
 - Removed postponed-GUI Engine, Graphics, and Scene placeholder files.

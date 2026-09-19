@@ -5,8 +5,7 @@ turn-based fantasy board game with creature battles, capture, evolution, and
 territory control. It was built as a proof of concept for the core gameplay
 systems.
 
-This repository is a historical MVP archive. It is not the current production
-build, and it does not contain the later graphical or networked version of
+This repository is a historical MVP archive and it does not contain graphical or networked version of
 EvoSphere.
 
 ## Features
@@ -92,7 +91,6 @@ src/data/      Fixed board, Evoran, and event data
 include/Utils/ Constants and random helpers
 tests/         Automated regression tests
 docs/          Historical design and gameplay documentation
-external/      Archived third-party raylib source; not used by this build
 ```
 
 The gameplay rules are intentionally separated from terminal rendering and
@@ -105,8 +103,6 @@ Systems modules.
   multiplayer.
 - Automated tests do not yet cover every system, particularly events,
   Guardians, teleportation, turn management, and full console interaction.
-- `external/raylib` is retained historical third-party source and is not part
-  of the terminal build.
 
 ## Contributors
 
@@ -117,8 +113,7 @@ team contributions.
 
 No root project license has been selected for this repository. Unless the team
 adds one, the project source is not offered under an explicit open-source
-license. The bundled raylib source retains its own license at
-`external/raylib/LICENSE`.
+license.
 
 ## Status
 
