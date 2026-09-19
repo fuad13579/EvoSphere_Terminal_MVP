@@ -65,4 +65,28 @@ if(BUILD_TESTING)
     configure_evosphere_target(EvoSphereBattleTests)
 
     add_test(NAME EvoSphereBattleTests COMMAND EvoSphereBattleTests)
+
+    add_executable(EvoSphereEvoranTests tests/test_evoran.cpp)
+    target_link_libraries(EvoSphereEvoranTests PRIVATE EvoSphereCore)
+    configure_evosphere_target(EvoSphereEvoranTests)
+
+    add_test(NAME EvoSphereEvoranTests COMMAND EvoSphereEvoranTests)
+
+    add_executable(EvoSpherePlayerTests tests/test_player.cpp)
+    target_link_libraries(EvoSpherePlayerTests PRIVATE EvoSphereCore)
+    configure_evosphere_target(EvoSpherePlayerTests)
+
+    add_test(NAME EvoSpherePlayerTests COMMAND EvoSpherePlayerTests)
+
+    add_executable(EvoSphereMovementTests tests/test_movement.cpp)
+    target_link_libraries(EvoSphereMovementTests PRIVATE EvoSphereCore)
+    configure_evosphere_target(EvoSphereMovementTests)
+
+    add_test(NAME EvoSphereMovementTests COMMAND EvoSphereMovementTests)
+
+    add_executable(EvoSphereEvolutionTests tests/test_evolution.cpp)
+    target_link_libraries(EvoSphereEvolutionTests PRIVATE EvoSphereCore)
+    configure_evosphere_target(EvoSphereEvolutionTests)
+
+    add_test(NAME EvoSphereEvolutionTests COMMAND EvoSphereEvolutionTests)
 endif()

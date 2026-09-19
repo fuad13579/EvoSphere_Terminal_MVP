@@ -1,115 +1,125 @@
-# EvoSphere
+# EvoSphere Terminal MVP
 
-EvoSphere is a turn-based fantasy board game inspired by Monopoly-style board
-movement and creature capture and evolution. Players move around a 40-tile
-board, collect Evorans, control tiles, evolve their team, and reduce opposing
-players' Avatar Points.
+EvoSphere Terminal MVP is the original console prototype of EvoSphere: a
+turn-based fantasy board game with creature battles, capture, evolution, and
+territory control. It was built as a proof of concept for the core gameplay
+systems.
 
-## Current Status
+This repository is a historical MVP archive. It is not the current production
+build, and it does not contain the later graphical or networked version of
+EvoSphere.
 
-EvoSphere is a playable terminal MVP. It uses structured programming: game
-state is stored in `struct` values and behavior is implemented by separate
-free functions. The terminal MVP is still under active testing and does not
-yet include the planned GUI, saved games, audio, or online multiplayer.
+## Features
 
-The planned terminal version includes:
-
-- Two or three players
-- Two Energy Orbs for movement
-- 40 board tiles
-- Wild Evoran battles and capture
-- Player-owned Evoran tiles
+- Two or three local players
+- A 40-tile board with two Energy Orbs for movement
+- Wild Evoran encounters, battles, and capture
+- Player-owned Evoran and special tiles
+- Territory ownership bonuses
+- Origin Gate rewards and defeated-Evoran revival
 - Guardian encounters
 - Teleport Terminals
 - Blessing Shrine and Chaos Rift events
-- Evolution using Evolution Gems
+- One-step Evoran evolution using Evolution Gems
 - Avatar Point defeat and winner detection
-
-The future version will add a GUI application and network multiplayer.
-
-## Technology
-
-- C++17
-- CMake
-- Structured programming using `struct` data and separate functions
-- Terminal input and output for the MVP
-
-## Project Structure
-
-```text
-assets/      Game artwork and interface assets
-docs/        Project documentation and planning
-include/     Header files
-src/         Source files
-tests/       Automated tests
-tools/       Development notes and tools
-```
-
-Important code areas:
-
-```text
-Core/       Player, Evoran, Board, Tile, Game, and turn data
-Systems/    Movement, battle, capture, event, evolution, and teleport rules
-Console/    Terminal input, output, and game flow
-data/       Fixed Evoran, board, and event data
-Utils/      Constants, random utilities, and shared helpers
-```
-
-The console program starts with `runConsoleGame(ConsoleGameState*)`.
-`ConsoleInput` and `ConsoleRenderer` are namespaces of free functions, and the
-core gameplay layer remains independent of terminal input and output.
 
 ## Requirements
 
-Install:
-
-- A C++17-compatible compiler
 - CMake 3.16 or newer
+- A C++17 compiler
+
+On Windows, install either Visual Studio or Build Tools with the **Desktop
+development with C++** workload, or an MSYS2 MinGW C++ toolchain. CMake must
+be able to find the selected compiler.
 
 ## Build
 
-From the project root, run:
+From the repository root:
 
 ```powershell
 cmake -S . -B build
 cmake --build build --config Debug
 ```
 
-## Test
-
-The board and battle regression tests are enabled by default through CTest:
+If you use MSYS2 MinGW, configure with its generator instead:
 
 ```powershell
-ctest --test-dir build -C Debug --output-on-failure
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
 ```
 
 ## Run
+
+With a Visual Studio multi-configuration build:
 
 ```powershell
 .\build\Debug\EvoSphere.exe
 ```
 
-The exact executable location may differ depending on the compiler and CMake
-generator.
+With a MinGW single-configuration build:
 
-## Development Workflow
+```powershell
+.\build\EvoSphere.exe
+```
 
-1. Pull the latest changes from `dev`.
-2. Create a feature branch for your task.
-3. Make small, focused changes.
-4. Build and test the project.
-5. Commit with a clear message.
-6. Open a pull request to `dev`.
+At startup, choose two or three players, enter avatar names, select unique
+starter Evorans, then use the numbered terminal menu. Roll the Orbs once per
+turn; after rolling, choose **End Turn** from the same menu entry.
 
-## Documentation
+## Tests
 
-Project planning and explanations are available in the `docs/` directory,
-including:
+The automated tests cover Board, Evoran, Player, Movement, Battle, and
+Evolution behaviour:
 
-- `EvoSphere_Current_Gameplay_Logic.md`
-- `evosphere_evoran_roster.md`
-- `EvoSphere_Development_Roadmap.md`
-- `terminal_mvp_issues.md`
-- `gui_network_multiplayer_issues.md`
-- `team-contributions.md`
-- `Code_Explanation_Guide.md`
+```powershell
+ctest --test-dir build -C Debug --output-on-failure
+```
+
+For a MinGW single-configuration build, omit `-C Debug`:
+
+```powershell
+ctest --test-dir build --output-on-failure
+```
+
+## Project Structure
+
+```text
+include/       Public headers
+src/Core/      Board, Tile, Player, Evoran, Guardian, game state, turns
+src/Systems/   Movement, battle, capture, events, evolution, teleportation
+src/Console/   Terminal input, output, and game loop
+src/data/      Fixed board, Evoran, and event data
+include/Utils/ Constants and random helpers
+tests/         Automated regression tests
+docs/          Historical design and gameplay documentation
+external/      Archived third-party raylib source; not used by this build
+```
+
+The gameplay rules are intentionally separated from terminal rendering and
+input. `src/main.cpp` launches `runConsoleGame`, which drives the Core and
+Systems modules.
+
+## Known Limitations
+
+- This is a local terminal game; it has no GUI, saved games, audio, or online
+  multiplayer.
+- Automated tests do not yet cover every system, particularly events,
+  Guardians, teleportation, turn management, and full console interaction.
+- `external/raylib` is retained historical third-party source and is not part
+  of the terminal build.
+
+## Contributors
+
+See [docs/team-contributions.md](docs/team-contributions.md) for the recorded
+team contributions.
+
+## License
+
+No root project license has been selected for this repository. Unless the team
+adds one, the project source is not offered under an explicit open-source
+license. The bundled raylib source retains its own license at
+`external/raylib/LICENSE`.
+
+## Status
+
+Archived terminal MVP. Active EvoSphere development continues elsewhere.
