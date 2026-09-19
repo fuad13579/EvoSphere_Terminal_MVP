@@ -117,4 +117,4 @@ license.
 
 ## Status
 
-Archived terminal MVP. Active EvoSphere development continues elsewhere.
+Archived terminal MVP.
